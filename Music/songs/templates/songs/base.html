@@ -1,0 +1,49 @@
+{% load static %}
+<html>
+<head>
+  <title>{%block title%}Music{%endblock%}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'songs/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'songs/css/style.css' %}">
+</head>
+<body>
+<div class="container">
+  <header>
+    <nav >
+      <ul class="bglight">
+        <li class="li-left">
+          <a class="base-a-img" href="{% url 'songs:home' %}">
+            <img src="{%static 'songs/img/logo.png' %}" style="width:50px;" alt="logo">
+          </a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="li-right">
+          <a class="base-a" href="{% url 'songs:logout' %}">Logout</a>
+        </li>
+        <li class="li-right">
+          <a class="base-a" href="{% url 'songs:add_album' user %}">Add Album</a>
+        </li>
+        <li class="li-right">
+          <a class="base-a" href="{% url 'songs:profile_detail' user %}">{{ user.username }}</a>
+        </li>
+        {% else %}
+        <li class="li-right">
+          <a class="base-a" href="{% url 'songs:login' %}">Login</a>
+        </li>
+        <li class="li-right">
+          <a class="base-a" href="{% url 'songs:signup' %}">SignUp</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+</div>
+
+<div class="container">
+  {%block content%}
+  {%endblock%}
+</div>
+
+  </body>
+</html>

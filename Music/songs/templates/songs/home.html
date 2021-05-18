@@ -1,0 +1,23 @@
+{% extends 'songs/base.html' %}
+
+{%block title%}Home{%endblock%}
+
+{%block content%}
+
+<div class="container">
+  <ul class="home-list">
+    {% for album in albums %}
+      <li >
+        <span><a class="home-a" href="{% url 'songs:album_detail' username=album.artist album=album.album_name %}">
+          <img src="{{ album.logo.url }}" style="width:100px">
+        </a></span>
+         <span style="color:#007bff;">{{album.album_name}} by</span>
+        <a class="home-a" href="{% url 'songs:profile_detail' username=album.artist %}">
+          {{album.artist}}
+        </a>
+      </li><hr/>
+    {% endfor %}
+  </ul>
+</div>
+
+{%endblock%}

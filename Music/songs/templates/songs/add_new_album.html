@@ -1,0 +1,15 @@
+{% extends 'songs/base.html' %}
+
+{%block title%}Add new album{%endblock%}
+{%block content%}
+
+<div class="container">
+	<h2 style="margin:30px;">Add new album here.</h2>
+	<form method="POST" enctype="multipart/form-data">
+	  {% csrf_token %}
+	  {{form.as_p}}
+	  <button type="submit" class="save btn btn-primary">Save</button>
+	</form>
+</div>
+
+{%endblock%}
